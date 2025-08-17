@@ -1,5 +1,6 @@
 import Link from "next/link";
 import MagneticButton from "@/components/MagneticButton";
+import { content } from "@/config/content";
 
 type Project = {
   title: string;
@@ -8,29 +9,12 @@ type Project = {
   tags: string[];
 };
 
-const projects: Project[] = [
-  {
-    title: "Signal Notes",
-    description:
-      "A minimal knowledge system focused on signal over noise. Fast, keyboard-friendly, and beautifully simple.",
-    href: "#",
-    tags: ["Next.js", "TypeScript", "Tailwind"],
-  },
-  {
-    title: "Realtime Presence",
-    description:
-      "Lightweight presence and collaboration primitives for web apps using websockets and CRDT ideas.",
-    href: "#",
-    tags: ["WebSockets", "Edge", "Vercel"],
-  },
-  {
-    title: "Design System",
-    description:
-      "A cohesive, accessible component library with a crisp aesthetic and pragmatic APIs.",
-    href: "#",
-    tags: ["UI", "Accessibility", "Design"],
-  },
-];
+const projects: Project[] = content.projects.map((project) => ({
+  title: project.title,
+  description: project.description,
+  href: project.href,
+  tags: [...project.tags],
+}));
 
 export default function Projects() {
   return (
